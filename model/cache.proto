@@ -1,0 +1,29 @@
+syntax = "proto3";  //protobuf3协议
+package cache;
+
+//请求
+message GetReq {
+    string key = 1;
+}
+
+message GetResp {
+    bool status = 1;
+    string value = 2;
+}
+
+message SetReq {
+    string key = 1;
+    string value = 2;
+    int64 ttl = 3;
+}
+
+message SetResp {
+    bool status = 1;
+}
+
+
+//服务
+service Data {
+    rpc Get(GetReq) returns (GetResp);
+    rpc Set(SetReq) returns (SetResp);
+}
